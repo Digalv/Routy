@@ -8,11 +8,13 @@ on:
 
 jobs:
   backend:
-    name: Backend — Build & Test
+    name: Backend — Build, Test & Sonar
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-java@v4
         with:
@@ -23,6 +25,18 @@ jobs:
       - name: Build, test & coverage check
         run: mvn verify --batch-mode --no-transfer-progress
         working-directory: backend
+
+      - name: SonarCloud analysis
+        run: |
+          mvn sonar:sonar --batch-mode --no-transfer-progress \
+            -Dsonar.projectKey=Digalv_Routy \
+            -Dsonar.organization=digalv \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
+            -Dsonar.java.binaries=target/classes
+        working-directory: backend
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Upload JaCoCo report
         if: always()
