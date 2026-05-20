@@ -4,7 +4,7 @@ type ApiOptions = {
   token?: string | null
 }
 
-async function handleResponse<T>(res: Response, path: string, method: string): Promise<T> {
+async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
     let message = `HTTP ${res.status}`
     try {
@@ -26,7 +26,7 @@ export async function apiGet<T>(path: string, options?: ApiOptions): Promise<T> 
   const res = await fetch(`${BASE}${path}`, {
     headers: authHeaders(options?.token),
   })
-  return handleResponse<T>(res, path, 'GET')
+  return handleResponse<T>(res)
 }
 
 export async function apiPost<TReq, TRes>(
@@ -42,7 +42,7 @@ export async function apiPost<TReq, TRes>(
     },
     body: JSON.stringify(body),
   })
-  return handleResponse<TRes>(res, path, 'POST')
+  return handleResponse<TRes>(res)
 }
 
 export async function apiDelete(path: string, options?: ApiOptions): Promise<void> {

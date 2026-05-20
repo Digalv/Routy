@@ -23,9 +23,6 @@ function formatDuration(minutes: number): string {
   return `${h}h ${String(m).padStart(2, '0')}m`
 }
 
-function formatPrice(price: number): string {
-  return `€${Math.floor(price)}`
-}
 
 const TYPE_ICON: Record<TransportType, React.ReactNode> = {
   FLIGHT: <Plane size={14} />,
