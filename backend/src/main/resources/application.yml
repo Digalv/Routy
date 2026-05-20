@@ -1,0 +1,57 @@
+# Базовая конфигурация (общая для всех профилей)
+spring:
+  application:
+    name: route-aggregator
+  profiles:
+    active: dev
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/rotepet}
+
+jwt:
+  # Dev-only secret — replace with a securely generated 256-bit key in production
+  secret: ${JWT_SECRET:cGxlYXNlLXJlcGxhY2UtdGhpcy1zZWNyZXQtaW4tcHJvZHVjdGlvbi1lbnZpcm9ubWVudA==}
+  expiration-ms: 86400000
+
+server:
+  port: 8080
+
+providers:
+  duffel:
+    base-url: https://api.duffel.com
+    token: ${DUFFEL_TOKEN}
+  transitous:
+    base-url: https://api.transitous.org
+
+# CORS (читается в CorsConfig.java)
+cors:
+  allowed-origins: "http://localhost:5173"
+
+logging:
+  level:
+    com.rotepet: INFO
+    org.springframework.web: INFO
+
+---
+# Профиль dev — локальный запуск из IDE / mvn spring-boot:run
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  level:
+    com.rotepet: DEBUG
+    org.springframework.web: INFO
+
+---
+# Профиль docker — запуск через docker-compose.
+# Токены передаются как env-переменные контейнера (см. docker-compose.yml).
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+logging:
+  level:
+    com.rotepet: INFO

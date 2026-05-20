@@ -1,0 +1,25 @@
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.mongo.MongoAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration
+
+jwt:
+  secret: AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=
+  expiration-ms: 3600000
+
+providers:
+  duffel:
+    base-url: http://localhost:9999
+    token: test-duffel-token
+  transitous:
+    base-url: http://localhost:9999
+
+cors:
+  allowed-origins: "*"
+
+logging:
+  level:
+    root: WARN
+    com.rotepet: WARN
