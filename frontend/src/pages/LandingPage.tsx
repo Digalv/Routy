@@ -56,7 +56,6 @@ export default function LandingPage({
         />
       </div>
 
-      {/* Hero */}
       <div className="bg-dot-grid">
         <div className="max-w-[1200px] mx-auto px-8 pb-8">
           <div className="pt-16 pb-8 text-center">
@@ -97,7 +96,6 @@ export default function LandingPage({
         </div>
       </div>
 
-      {/* Two options section */}
       <div className="max-w-[1200px] mx-auto px-8 py-24">
         <div className="text-center mb-14">
           <h2 className="font-serif font-normal text-[48px] leading-[1.05] tracking-[-0.02em] m-0 mb-3">

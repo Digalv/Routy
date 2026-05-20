@@ -36,7 +36,6 @@ class JwtServiceTest {
         JwtService shortLived = new JwtService(SECRET, 1L);
         String token = shortLived.generateToken("user@example.com");
 
-        // wait for expiry
         try { Thread.sleep(50); } catch (InterruptedException ignored) {}
 
         assertThat(shortLived.isTokenValid(token)).isFalse();

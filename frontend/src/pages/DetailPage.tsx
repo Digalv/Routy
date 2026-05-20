@@ -129,7 +129,6 @@ export default function DetailPage({
           onLogout={onLogout}
         />
 
-        {/* Detail head */}
         <div className="pt-5 pb-7">
           <div className="flex items-center gap-2 text-[13px] text-muted">
             <a href="/" className="text-muted no-underline hover:text-ink">Home</a>
@@ -167,20 +166,17 @@ export default function DetailPage({
           </div>
         </div>
 
-        {/* Body */}
         <div
           className="grid gap-8 pt-3 pb-16"
           style={{ gridTemplateColumns: '1.6fr 1fr' }}
         >
           <div>
-            {/* Timeline card */}
             <div className="bg-white border border-border rounded-lg p-8 px-9">
               <h3 className="font-serif font-normal text-2xl m-0 mb-[22px]">Your journey</h3>
 
               <div className="trip-timeline">
                 {segments.map((seg, i) => (
                   <div key={i}>
-                    {/* Departure node */}
                     <div className="relative pb-7">
                       <div
                         className={`absolute -left-[26px] top-1 w-3.5 h-3.5 rounded-full border-2 ${
@@ -207,7 +203,6 @@ export default function DetailPage({
                       )}
                     </div>
 
-                    {/* Leg */}
                     <div className="tl-leg-connector">
                       <div className="bg-surface border border-border rounded-xl p-3.5 px-[18px] flex items-center gap-3.5 text-[13px]">
                         <div className="w-8 h-8 rounded-lg bg-white border border-border flex items-center justify-center text-accent flex-shrink-0">
@@ -227,7 +222,6 @@ export default function DetailPage({
                   </div>
                 ))}
 
-                {/* Final arrival node */}
                 <div className="relative pt-0">
                   <div className="absolute -left-[26px] top-1 w-3.5 h-3.5 rounded-full bg-accent border-2 border-accent" />
                   <div className="font-mono text-[15px] text-ink-2 font-medium">
@@ -243,7 +237,6 @@ export default function DetailPage({
               </div>
             </div>
 
-            {/* Info card */}
             {stops > 0 && (
               <div className="bg-white border border-border rounded-[14px] p-5 px-6 mt-4 flex items-start gap-3.5">
                 <Info size={20} className="text-accent flex-shrink-0 mt-0.5" />
@@ -258,7 +251,6 @@ export default function DetailPage({
             )}
           </div>
 
-          {/* Summary card */}
           <aside className="bg-white border border-border rounded-lg p-7 sticky top-20 self-start">
             <div className="text-[13px] text-muted uppercase tracking-[0.08em] font-semibold mb-0.5">
               Trip summary

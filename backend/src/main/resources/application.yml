@@ -1,4 +1,3 @@
-# Базовая конфигурация (общая для всех профилей)
 spring:
   application:
     name: route-aggregator
@@ -9,7 +8,6 @@ spring:
       uri: ${MONGO_URI:mongodb://localhost:27017/rotepet}
 
 jwt:
-  # Dev-only secret — replace with a securely generated 256-bit key in production
   secret: ${JWT_SECRET:cGxlYXNlLXJlcGxhY2UtdGhpcy1zZWNyZXQtaW4tcHJvZHVjdGlvbi1lbnZpcm9ubWVudA==}
   expiration-ms: 86400000
 
@@ -23,7 +21,6 @@ providers:
   transitous:
     base-url: https://api.transitous.org
 
-# CORS (читается в CorsConfig.java)
 cors:
   allowed-origins: "http://localhost:5173"
 
@@ -33,7 +30,6 @@ logging:
     org.springframework.web: INFO
 
 ---
-# Профиль dev — локальный запуск из IDE / mvn spring-boot:run
 spring:
   config:
     activate:
@@ -45,8 +41,6 @@ logging:
     org.springframework.web: INFO
 
 ---
-# Профиль docker — запуск через docker-compose.
-# Токены передаются как env-переменные контейнера (см. docker-compose.yml).
 spring:
   config:
     activate:

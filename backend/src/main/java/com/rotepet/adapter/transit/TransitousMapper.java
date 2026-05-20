@@ -19,7 +19,6 @@ public class TransitousMapper {
 
     private static final Logger log = LoggerFactory.getLogger(TransitousMapper.class);
 
-    // GTFS Extended Route Types для дальних/скоростных поездов
     private static final Set<Integer> INTERCITY_ROUTE_TYPES = Set.of(100, 101, 102, 103, 105);
     private static final Random RANDOM = new Random();
 
@@ -35,13 +34,11 @@ public class TransitousMapper {
                 .toList();
     }
 
-    // Итинерарий включается если хотя бы одна нога — скоростной/дальний поезд
     private boolean hasIntercityLeg(TransitousResponseDto.Itinerary itinerary) {
         return itinerary.legs().stream().anyMatch(this::isIntercityLeg);
     }
 
     private TripOption toTripOption(TransitousResponseDto.Itinerary itinerary) {
-        // Показываем все транзитные ноги — без разрывов
         List<Leg> legs = itinerary.legs().stream()
                 .filter(l -> !"WALK".equals(l.mode()))
                 .map(l -> new Leg(

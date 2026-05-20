@@ -46,7 +46,7 @@ class TransitousMapperTest {
 
     @Test
     void toTripOptions_intercityByRouteType_includesItinerary() {
-        var leg = intercityLeg("RAIL", 101); // 101 = intercity
+        var leg = intercityLeg("RAIL", 101);
         var result = mapper.toTripOptions(new TransitousResponseDto.Root(List.of(itinerary(List.of(leg)))));
 
         assertThat(result).hasSize(1);
@@ -56,7 +56,7 @@ class TransitousMapperTest {
 
     @Test
     void toTripOptions_intercityByRailMode_includesItinerary() {
-        var leg = intercityLeg("RAIL", null); // routeType=null, mode=RAIL
+        var leg = intercityLeg("RAIL", null);
         var result = mapper.toTripOptions(new TransitousResponseDto.Root(List.of(itinerary(List.of(leg)))));
 
         assertThat(result).hasSize(1);
@@ -64,7 +64,7 @@ class TransitousMapperTest {
 
     @Test
     void toTripOptions_onlySuburbanTrain_excludesItinerary() {
-        var leg = intercityLeg("BUS", 3); // not intercity
+        var leg = intercityLeg("BUS", 3);
         var result = mapper.toTripOptions(new TransitousResponseDto.Root(List.of(itinerary(List.of(leg)))));
 
         assertThat(result).isEmpty();

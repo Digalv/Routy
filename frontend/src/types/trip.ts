@@ -10,16 +10,16 @@ export type SearchRequest = {
 export type Leg = {
   from: string
   to: string
-  departure: string  // ISO instant
-  arrival: string    // ISO instant
+  departure: string
+  arrival: string
   carrier: string
 }
 
 export type TripOption = {
   type: TransportType
   legs: Leg[]
-  price: number       // actual amount in currency units (e.g. 80.00 EUR)
+  price: number
   currency: string
-  duration: string    // ISO-8601 duration e.g. "PT2H30M"
+  duration: string
   provider: string
 }

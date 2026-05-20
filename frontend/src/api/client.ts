@@ -11,7 +11,6 @@ async function handleResponse<T>(res: Response): Promise<T> {
       const data = await res.json()
       if (data?.message) message = data.message
     } catch {
-      // ignore parse error
     }
     throw new Error(message)
   }

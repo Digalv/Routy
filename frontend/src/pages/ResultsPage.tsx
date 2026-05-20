@@ -66,7 +66,6 @@ export default function ResultsPage({
   const [searchSaved, setSearchSaved] = useState(false)
   const [savingSearch, setSavingSearch] = useState(false)
 
-  // Check if current search is already saved
   const isCurrentSearchSaved = useMemo(
     () => wishlistItems.some(i => i.from === from && i.to === to && i.date === date),
     [wishlistItems, from, to, date],
@@ -127,7 +126,6 @@ export default function ResultsPage({
       onAddToWishlist(item)
       setSearchSaved(true)
     } catch {
-      // silently ignore
     } finally {
       setSavingSearch(false)
     }
@@ -162,7 +160,6 @@ export default function ResultsPage({
           onLogout={onLogout}
         />
 
-        {/* Results header */}
         <div className="pt-4 pb-6 border-b border-border">
           <div className="flex items-center gap-2 text-[13px] text-muted mb-3.5">
             <a href="/" className="text-muted no-underline hover:text-ink">Home</a>
@@ -202,7 +199,6 @@ export default function ResultsPage({
           </div>
         </div>
 
-        {/* Body */}
         <div className="grid gap-8 py-8 pb-16" style={{ gridTemplateColumns: '240px 1fr' }}>
           <Filters
             results={results}
@@ -213,7 +209,6 @@ export default function ResultsPage({
           />
 
           <div>
-            {/* Fastest / Cheapest tabs */}
             <div className="flex gap-1 p-1 bg-surface-2 rounded-xl mb-5 max-w-[540px]">
               {(['fastest', 'cheapest'] as Tab[]).map(tab => (
                 <button
@@ -240,7 +235,6 @@ export default function ResultsPage({
               ))}
             </div>
 
-            {/* Meta row */}
             <div className="flex items-center justify-between text-[13px] text-muted mb-3.5">
               <div>
                 Showing <span className="font-mono">{sorted.length}</span> options
@@ -254,14 +248,12 @@ export default function ResultsPage({
               </div>
             </div>
 
-            {/* Error */}
             {error && (
               <div className="p-4 bg-[#FEF2F2] border border-[#FECACA] text-[#B91C1C] rounded-xl text-sm mb-4">
                 {error}
               </div>
             )}
 
-            {/* Loading skeleton */}
             {loading && (
               <div className="space-y-3">
                 {[1, 2, 3].map(i => (
@@ -270,7 +262,6 @@ export default function ResultsPage({
               </div>
             )}
 
-            {/* Results */}
             {!loading &&
               sorted.map((trip, i) => (
                 <TripCard
